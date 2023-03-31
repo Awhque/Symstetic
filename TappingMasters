@@ -16,7 +16,8 @@ local Credentials = {
 local TableStorage = {
     Eggs = {},
     Islands = {},
-    Rebirth = {}
+    Rebirth = {},
+    UIs = {"None"}
 }
 
 for _, v in pairs(game:GetService("Workspace").Scripted.EggHolders:GetChildren()) do
@@ -32,6 +33,7 @@ for _, v in pairs(game:GetService("Workspace").Scripted.Islands:GetChildren()) d
         table.insert(TableStorage.Islands, v.Name)
     end
 end
+
 
 --// Tabs \\ --
 
@@ -154,14 +156,12 @@ local AutoOpenRobux = ShopSection:CreateButton("Open Robux Store", function() do
 end)
 
 local UserSection = Tabs.User:CreateSection("User Settings 🙎")
-local SpeedSlider = UserSection:CreateSlider("Walk Speed", 25, 125, 25, Color3.fromRGB(0, 125, 255), function(value)
+local SpeedSlider = UserSection:CreateSlider("Walk Speed", 25, 125, game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed, Color3.fromRGB(0, 125, 255), function(value)
     game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
 end)
-local JumpSlider = UserSection:CreateSlider("Jump Power", 25, 150, 25, Color3.fromRGB(0, 125, 255), function(value)
+local JumpSlider = UserSection:CreateSlider("Jump Power", 25, 150, game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower, Color3.fromRGB(0, 125, 255), function(value)
     game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = value
 end)
-
-
 
 local Settings = Tabs.Settings:CreateSection("UI Settings ⚙️")
 local DestroyButton = Settings:CreateButton("Destroy UI", function()
