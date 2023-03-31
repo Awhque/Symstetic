@@ -10,7 +10,7 @@ Library:SetTransparency(0.1, true)
 --// Get Local Files & Storage \\ --
 
 local Credentials = {
-    "Scripting: Oculiix#0001", 
+    "Scripting: Awhque#8556", 
     "Inspiration/Resources: CollateralDamage#2848"
 }
 
