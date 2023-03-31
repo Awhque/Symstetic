@@ -9,7 +9,8 @@ Library:SetTransparency(0.1, true)
 --// Get Local Files & Storage \\ --
 
 local Credentials = {
-    "Scripting: Awhque#8556"
+    "Scripting: Awhque#8556", 
+    
 }
 
 local TableStorage = {
