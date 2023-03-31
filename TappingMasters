@@ -3,8 +3,7 @@ for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) d
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua"))()
 local Window = Library:CreateWindow("Symstetic v1", "Tapping Masters", "[ Symstetic Hub ]", "rbxassetid://10618928818", true, "VisualUIConfigs", "Default")
 
-Library:CreateNotification("Loaded!", "Welcome to the Symstetic Hub!", 5)
-
+Library:CreateNotification("Loaded!", "Welcome to the Symstetic Hub", 5)
 Library:SetTransparency(0.1, true)
 
 --// Get Local Files & Storage \\ --
@@ -169,10 +168,10 @@ local Settings = Tabs.Settings:CreateSection("UI Settings ⚙️")
 local DestroyButton = Settings:CreateButton("Destroy UI", function()
     Library:DestroyUI()
 end)
+
 local ToggleKeybind = Settings:CreateKeybind("Toggle UI", "RightShift", function()
     Library:ToggleUI()
 end)
-
 
 local Credits = Tabs.Settings:CreateSection("Credits📄")
 for _, v in pairs(Credentials) do
