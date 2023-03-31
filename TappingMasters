@@ -79,7 +79,7 @@ local DropdownEgg = PetSection:CreateDropdown("Choose An Egg", TableStorage.Eggs
     getgenv().EggToHatch = option
 end)
 
-local AmountDropdown = PetSection:CreateDropdown("Type Of Opening", {"Single", "Triple"}, "Single", 0.25, function(option)
+local AmountDropdown = PetSection:CreateDropdown("Hatching Style", {"Single", "Triple"}, "Single", 0.25, function(option)
     getgenv().EggAmount = option
 end)
 
