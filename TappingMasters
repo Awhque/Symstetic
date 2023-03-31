@@ -66,10 +66,9 @@ local AutoChest = FarmingSection:CreateToggle("Auto Collect Chests", false, Colo
     getgenv().AutoChest = bool
 
     while AutoChest and task.wait() do
-        for _, v in pairs(game:GetService("Workspace").Scripted.Chests:GetDescendants()) do
-            if v.Name == "TouchInterest" and v.Parent then
-                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Touch, 0)
-                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Touch, 1)
+        for _, v in pairs(game:GetService("Workspace").Scripted.Chests:GetChildren()) do
+            if not v.Text.BillboardGui.Timer.Visible then
+                game:GetService("ReplicatedStorage").Functions.CollectChest:InvokeServer(v.Name)
             end
         end
     end
