@@ -169,7 +169,7 @@ local DestroyButton = Settings:CreateButton("Destroy UI", function()
     Library:DestroyUI()
 end)
 
-local ToggleKeybind = Settings:CreateKeybind("Toggle UI", "RightShift", function()
+local ToggleKeybind = Settings:CreateKeybind("Toggle UI", "LeftShift", function()
     Library:ToggleUI()
 end)
 
