@@ -1,0 +1,180 @@
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do v:Disable() end
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua"))()
+local Window = Library:CreateWindow("Symstetic v1", "Tapping Masters", "[ Symstetic Hub ]", "rbxassetid://10618928818", true, "VisualUIConfigs", "Default")
+
+Library:CreateNotification("Loaded!", "Welcome to the Symstetic Hub!", 3)
+
+Library:SetTransparency(0.1, true)
+
+--// Get Local Files & Storage \\ --
+
+local Credentials = {
+    "Scripting: Oculiix#0001", 
+    "Inspiration/Resources: CollateralDamage#2848"
+}
+
+local TableStorage = {
+    Eggs = {},
+    Islands = {},
+    Rebirth = {}
+}
+
+for _, v in pairs(game:GetService("Workspace").Scripted.EggHolders:GetChildren()) do
+    if not string.find(v.Name, "Robux") then
+        if not table.find(TableStorage.Eggs, v.Name) then
+            table.insert(TableStorage.Eggs, v.Name)
+        end
+    end
+end
+
+for _, v in pairs(game:GetService("Workspace").Scripted.Islands:GetChildren()) do
+    if not table.find(TableStorage.Islands, v.Name) then
+        table.insert(TableStorage.Islands, v.Name)
+    end
+end
+
+--// Tabs \\ --
+
+local Tabs = {
+
+    Automation = Window:CreateTab("Automation", true, "rbxassetid://3926305904", Vector2.new(727, 44), Vector2.new(36, 36)),
+    Pets = Window:CreateTab("Pets", false, "rbxassetid://3926305904", Vector2.new(727, 44), Vector2.new(36, 36)),
+    Remote = Window:CreateTab("Shops", false, "rbxassetid://3926305904", Vector2.new(727, 44), Vector2.new(36, 36)),
+    User = Window:CreateTab("Player", false, "rbxassetid://3926305904", Vector2.new(727, 44), Vector2.new(36, 36)),
+    Settings = Window:CreateTab("Interface", false, "rbxassetid://3926305904", Vector2.new(727, 44), Vector2.new(36, 36))
+}
+--// Subsections & Functions \\--
+
+local FarmingSection = Tabs.Automation:CreateSection('Farming Category 🧺')
+local AutoClick = FarmingSection:CreateToggle("Auto Click", false, Color3.fromRGB(0, 125, 255), 0.25, function(bool)
+    getgenv().AutoClick = bool
+
+    while AutoClick and task.wait() do
+        game:GetService("ReplicatedStorage").Events.Click:FireServer()
+    end
+end)
+
+local AutoMastery = FarmingSection:CreateToggle("Auto Mastery", false, Color3.fromRGB(0, 125, 255), 0.25, function(bool)
+    getgenv().AutoMastery = bool
+
+    while AutoMastery and task.wait(1) do
+        game:GetService("ReplicatedStorage").Functions.IncreaseMastery:InvokeServer()
+    end
+end)
+
+local AutoChest = FarmingSection:CreateToggle("Auto Collect Chests", false, Color3.fromRGB(0, 125, 255), 0.25, function(bool)
+    getgenv().AutoChest = bool
+
+    while AutoChest and task.wait() do
+        for _, v in pairs(game:GetService("Workspace").Scripted.Chests:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Touch, 0)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Touch, 1)
+            end
+        end
+    end
+end)
+
+local PetSection = Tabs.Pets:CreateSection("Egg Options 🥚")
+local DropdownEgg = PetSection:CreateDropdown("Choose An Egg", TableStorage.Eggs, "Basic", 0.25, function(option)
+    getgenv().EggToHatch = option
+end)
+
+local AmountDropdown = PetSection:CreateDropdown("Type Of Opening", {"Single", "Triple"}, "Single", 0.25, function(option)
+    getgenv().EggAmount = option
+end)
+
+local AutoHatch = PetSection:CreateToggle("Enable Auto Hatch", false, Color3.fromRGB(0, 125, 255), 0.25, function(bool)
+    getgenv().AutoHatch = bool
+
+    while AutoHatch and task.wait(.0001) do 
+        game:GetService("ReplicatedStorage").Functions.Hatch:InvokeServer(EggToHatch, EggAmount)
+    end
+end)
+
+local ShopSection =Tabs.Remote:CreateSection("Remote UI Options 🌟")
+
+local AutoOpenMastery = ShopSection:CreateButton("Open Mastery", function () do
+        for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.Mastery:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+                wait(1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+                break;
+            end
+        end
+    end
+end)
+
+local AutoOpenUpgrades = ShopSection:CreateButton("Open Upgrades", function () do
+    for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.Upgrades:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+                wait(1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+                break;
+            end
+        end
+    end
+end)
+
+local AutoOpenIndex = ShopSection:CreateButton("Open Index", function() do
+        for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.Index:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+                wait(1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+                break;
+            end
+        end
+    end
+end)
+
+local AutoPotionsOpen = ShopSection:CreateButton("Open Potion Shop", function() do
+    for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.PotionShop:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+                wait(1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+                break;
+            end
+        end
+    end
+end)
+
+local AutoOpenRobux = ShopSection:CreateButton("Open Robux Store", function() do
+    for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.RobuxShop:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+                wait(1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+                break;
+            end
+        end
+    end
+end)
+
+local UserSection = Tabs.User:CreateSection("User Settings 🙎")
+local SpeedSlider = UserSection:CreateSlider("Walk Speed", 25, 125, 25, Color3.fromRGB(0, 125, 255), function(value)
+    game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+local JumpSlider = UserSection:CreateSlider("Jump Power", 25, 150, 25, Color3.fromRGB(0, 125, 255), function(value)
+    game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = value
+end)
+
+
+
+local Settings = Tabs.Settings:CreateSection("UI Settings ⚙️")
+local DestroyButton = Settings:CreateButton("Destroy UI", function()
+    Library:DestroyUI()
+end)
+local ToggleKeybind = Settings:CreateKeybind("Toggle UI", "RightShift", function()
+    Library:ToggleUI()
+end)
+
+
+local Credits = Tabs.Settings:CreateSection("Credits📄")
+for _, v in pairs(Credentials) do
+    Credits:CreateLabel(v)
+end
