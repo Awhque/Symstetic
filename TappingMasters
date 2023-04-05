@@ -173,7 +173,7 @@ end)
 
 local ShopSection = Tabs.Remote:CreateSection("Relic Menus 🌟")
 
-local AutoRelicInventory = ShopSection:CreateButton("Relic Inventory", function() do
+local AutoRelicInventory = ShopSection:CreateButton("Open Relic Inventory", function() do
     for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.RelicInventory:GetDescendants()) do
             if v.Name == "TouchInterest" and v.Parent then
                 firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
@@ -185,7 +185,7 @@ local AutoRelicInventory = ShopSection:CreateButton("Relic Inventory", function(
     end
 end)
 
-local AutoRelicUpgrader = ShopSection:CreateButton("Relic Upgrader", function() do
+local AutoRelicUpgrader = ShopSection:CreateButton("Open Relic Upgrader", function() do
     for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.RelicUpgrader:GetDescendants()) do
             if v.Name == "TouchInterest" and v.Parent then
                 firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
