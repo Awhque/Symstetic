@@ -1,7 +1,7 @@
 for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do v:Disable() end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua"))()
-local Window = Library:CreateWindow("Symstetic v1", "Tapping Masters", "[ Symstetic Hub ]", "rbxassetid://10618928818", true, "VisualUIConfigs", "Default")
+local Window = Library:CreateWindow("Symstetic Hub", "Tapping Masters", "[ Symstetic Hub ]", "rbxassetid://10618928818", true, "VisualUIConfigs", "Default")
 
 Library:CreateNotification("Loaded!", "Welcome to the Symstetic Hub", 5)
 Library:SetTransparency(0.1, true)
@@ -33,6 +33,7 @@ for _, v in pairs(game:GetService("Workspace").Scripted.Islands:GetChildren()) d
         table.insert(TableStorage.Islands, v.Name)
     end
 end
+
 
 
 --// Tabs \\ --
@@ -74,7 +75,7 @@ local AutoChest = FarmingSection:CreateToggle("Auto Collect Chests", false, Colo
             end
         end
     end
-end)
+end)     
 
 local PetSection = Tabs.Pets:CreateSection("Egg Options 🥚")
 local DropdownEgg = PetSection:CreateDropdown("Choose An Egg", TableStorage.Eggs, "Basic", 0.25, function(option)
@@ -93,7 +94,8 @@ local AutoHatch = PetSection:CreateToggle("Enable Auto Hatch", false, Color3.fro
     end
 end)
 
-local ShopSection =Tabs.Remote:CreateSection("Remote UI Options 🌟")
+
+local ShopSection = Tabs.Remote:CreateSection("Remote UI Options 🌟")
 
 local AutoOpenMastery = ShopSection:CreateButton("Open Mastery", function () do
         for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.Mastery:GetDescendants()) do
@@ -155,6 +157,46 @@ local AutoOpenRobux = ShopSection:CreateButton("Open Robux Store", function() do
     end
 end)
 
+local ShopSection = Tabs.Remote:CreateSection("Adventure Menu 🌟")
+
+local PetAdventureShop = ShopSection:CreateButton("Open Pet Adventures", function() do
+    for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.PetAdventure:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+                wait(1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+                break;
+            end
+        end
+    end
+end)
+
+local ShopSection = Tabs.Remote:CreateSection("Relic Menus 🌟")
+
+local AutoRelicInventory = ShopSection:CreateButton("Relic Inventory", function() do
+    for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.RelicInventory:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+                wait(1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+                break;
+            end
+        end
+    end
+end)
+
+local AutoRelicUpgrader = ShopSection:CreateButton("Relic Upgrader", function() do
+    for _, v in pairs(game:GetService("Workspace").Scripted.TouchParts.RelicUpgrader:GetDescendants()) do
+            if v.Name == "TouchInterest" and v.Parent then
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+                wait(1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+                break;
+            end
+        end
+    end
+end)
+
 local UserSection = Tabs.User:CreateSection("User Settings 🙎")
 local SpeedSlider = UserSection:CreateSlider("Walk Speed", 25, 125, game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed, Color3.fromRGB(0, 125, 255), function(value)
     game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = value
@@ -172,7 +214,7 @@ local ToggleKeybind = Settings:CreateKeybind("Toggle UI", "LeftShift", function(
     Library:ToggleUI()
 end)
 
-local Credits = Tabs.Settings:CreateSection("Credits📄")
+local Credits = Tabs.Settings:CreateSection("Credits 📄")
 for _, v in pairs(Credentials) do
     Credits:CreateLabel(v)
 end
